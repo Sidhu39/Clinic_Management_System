@@ -1,0 +1,75 @@
+<!-- app/templates/book_appointment.html -->
+
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Book Appointment</h2>
+  <form method="post" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.patient_name.label }}<br>
+      {{ form.patient_name(class="form-control") }}<br>
+      {% for error in form.patient_name.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.patient_id.label }}<br>
+      {{ form.patient_id(class="form-control") }}<br>
+      {% for error in form.patient_id.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.patient_weight.label }}<br>
+      {{ form.patient_weight(class="form-control") }}<br>
+      {% for error in form.patient_weight.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.patient_blood_group.label }}<br>
+      {{ form.patient_blood_group(class="form-control") }}<br>
+      {% for error in form.patient_blood_group.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.patient_height.label }}<br>
+      {{ form.patient_height(class="form-control") }}<br>
+      {% for error in form.patient_height.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.date.label }}<br>
+      {{ form.date(class="form-control") }}<br>
+      {% for error in form.date.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.time.label }}<br>
+      {{ form.time(class="form-control") }}<br>
+      {% for error in form.time.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.doctor.label }}<br>
+      {{ form.doctor(class="form-control") }}<br>
+      {% for error in form.doctor.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.reason.label }}<br>
+      {{ form.reason(class="form-control") }}<br>
+      {% for error in form.reason.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}

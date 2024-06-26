@@ -1,0 +1,14 @@
+<!-- app/templates/view_queue.html -->
+
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Queue</h2>
+  <ul>
+    {% for q in queue %}
+      <li>
+        Appointment for {{ q.appointment.patient_name }} at {{ q.appointment.time }}<br>
+        <a href="{{ url_for('main.prescribe_medications', appointment_id=q.appointment.id) }}">Prescribe Medications</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

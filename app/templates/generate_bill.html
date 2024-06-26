@@ -1,0 +1,23 @@
+<!-- app/templates/generate_bill.html -->
+
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Generate Bill for {{ appointment.patient_name }}</h2>
+  <form method="post" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      <label>Medications Prescribed</label><br>
+      <textarea class="form-control" disabled>{{ prescription.medications }}</textarea>
+    </div>
+    <div class="form-group">
+      {{ form.amount.label }}<br>
+      {{ form.amount(class="form-control") }}<br>
+      {% for error in form.amount.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}

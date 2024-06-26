@@ -1,0 +1,26 @@
+<!-- app/templates/prescribe_medications.html -->
+
+{% extends "layout.html" %}
+{% block content %}
+  <h2>Prescribe Medications for {{ appointment.patient_name }}</h2>
+  <form method="post" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.medications.label }}<br>
+      {{ form.medications(class="form-control") }}<br>
+      {% for error in form.medications.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.follow_up.label }}<br>
+      {{ form.follow_up(class="form-control") }}<br>
+      {% for error in form.follow_up.errors %}
+        <span class="text-danger">{{ error }}</span><br>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}
