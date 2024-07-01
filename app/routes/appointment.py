@@ -6,6 +6,7 @@ from flask_login import current_user, login_required
 
 bp = Blueprint('appointment', __name__)
 
+@bp.route('/')
 @bp.route('/book_appointment', methods=['GET', 'POST'])
 @login_required
 def book_appointment():

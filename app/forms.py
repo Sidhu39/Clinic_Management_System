@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, FloatField
+from wtforms import IntegerField, FloatField, DateTimeField
 from wtforms import DateField,TimeField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
@@ -41,7 +41,9 @@ class AppointmentForm(FlaskForm):
     date = DateField('Date', validators=[DataRequired()])
     time = TimeField('Time', validators=[DataRequired()])
     doctor = SelectField('Doctor', validators=[DataRequired()], coerce=int)
-    reason = StringField('Reason for Appointment')
+    doctor_name = SelectField('Doctor', choices=[], validators=[DataRequired()])  # We'll populate choices later
+    appointment_time = DateTimeField('Appointment Time', format='%Y-%m-%d %H:%M:%S', validators=[DataRequired()])
+    reason = StringField('Reason for Appointment', validators=[DataRequired(), Length(min=5, max=200)])
     submit = SubmitField('Book Appointment')
 
     def __init__(self, *args, **kwargs):
