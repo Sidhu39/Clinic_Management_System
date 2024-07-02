@@ -40,10 +40,8 @@ class AppointmentForm(FlaskForm):
     patient_height = FloatField('Patient Height', validators=[DataRequired()])
     date = DateField('Date', validators=[DataRequired()])
     time = TimeField('Time', validators=[DataRequired()])
-    doctor = SelectField('Doctor', validators=[DataRequired()], coerce=int)
-    doctor_name = SelectField('Doctor', choices=[], validators=[DataRequired()])  # We'll populate choices later
-    appointment_time = DateTimeField('Appointment Time', format='%Y-%m-%d %H:%M:%S', validators=[DataRequired()])
-    reason = StringField('Reason for Appointment', validators=[DataRequired(), Length(min=5, max=200)])
+    doctor = SelectField('Doctor', validators=[DataRequired()], coerce=str)
+    reason = StringField('Reason for Appointment')
     submit = SubmitField('Book Appointment')
 
     def __init__(self, *args, **kwargs):

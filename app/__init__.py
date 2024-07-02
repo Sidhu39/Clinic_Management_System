@@ -3,9 +3,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_migrate import Migrate
 from config import Config
 
 db = SQLAlchemy()
+migrate = Migrate()
 login = LoginManager()
 
 
@@ -17,6 +19,7 @@ def create_app(config_class=Config):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
+    migrate.init_app(app, db)
     login.init_app(app)
 
     from app.models import User, Appointment
@@ -36,3 +39,4 @@ def create_app(config_class=Config):
     login.login_view = routes.login
 
     return app
+create_app()

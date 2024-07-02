@@ -13,15 +13,15 @@ def book_appointment():
     form = AppointmentForm()
 
     # Get list of doctors to populate the doctor_name field choices
-    form.doctor_name.choices = [(doctor.username, doctor.username) for doctor in User.query.filter_by(role='doctor').all()]
+    form.doctor.choices = [(doctor.username, doctor.username) for doctor in User.query.filter_by(role='doctor').all()]
 
     if form.validate_on_submit():
         appointment = Appointment(
             patient_name=form.patient_name.data,
-            doctor_name=form.doctor_name.data,
-            appointment_time=form.appointment_time.data,
+            doctor_name=form.doctor.data,
+            appointment_time=form.time.data,
             reason=form.reason.data,
-            user_id=current_user.id
+            user_id=form.patient_id.data
         )
         db.session.add(appointment)
         db.session.commit()

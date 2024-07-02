@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint
 from flask_login import login_required, current_user
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for
 
 bp = Blueprint('nurse', __name__)
 

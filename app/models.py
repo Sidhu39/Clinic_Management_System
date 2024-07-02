@@ -2,7 +2,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from app import db, login
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug import generate_password_hash, check_password_hash
 
 
 
@@ -57,12 +57,14 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app import db
 from flask_login import UserMixin
 
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    role = db.Column(db.String(64), index=True)  # Add a role field
+    role = db.Column(db.String(64), index=True)
+    appointments = db.relationship('Appointment', backref='patient', lazy='dynamic') # Add a role field
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -80,6 +82,7 @@ class Appointment(db.Model):
     date = db.Column(db.Date, nullable=False)
     time = db.Column(db.Time, nullable=False)
     doctor_id = db.Column(db.Integer, nullable=False)
+    doctor_name = db.Column(db.String(64))
     reason = db.Column(db.String(256))
     patient_name = db.Column(db.String(64))
     patient_weight = db.Column(db.Float)
@@ -88,6 +91,9 @@ class Appointment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     queue = db.relationship('Queue', backref='appointment', uselist=False)
     prescription = db.relationship('Prescription', backref='appointment', uselist=False)
+
+    def __repr__(self):
+        return f'<Appointment {self.patient_name} with {self.doctor_name}>'
 
 class Queue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
