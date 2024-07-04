@@ -1,0 +1,21 @@
+<!-- billing.html -->
+{% extends "layout.html" %}
+{% block content %}
+<h1>Billing</h1>
+<p>Patient Name: {{ appointment.patient_name }}</p>
+<p>Patient ID: {{ appointment.patient_id }}</p>
+<p>Weight: {{ appointment.patient_weight }}</p>
+<p>Blood Group: {{ appointment.patient_blood_group }}</p>
+<p>Height: {{ appointment.patient_height }}</p>
+<p>Date: {{ appointment.date }}</p>
+<p>Time: {{ appointment.time }}</p>
+<p>Doctor Name: {{ appointment.doctor_name }}</p>
+<p>Reason: {{ appointment.reason }}</p>
+<p>Prescription: {{ appointment.prescription }}</p>
+
+<form method="POST">
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" required>
+    <button type="submit">Submit Bill</button>
+</form>
+{% endblock %}

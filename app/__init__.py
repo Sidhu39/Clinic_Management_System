@@ -28,9 +28,9 @@ def create_app(config_class=Config):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    from app.routes import routes, pharmacist, nurse, doctor, patient, appointment
+    from app.routes import routes, cashier, nurse, doctor, patient, appointment
     app.register_blueprint(routes.bp, url_prefix='/')
-    app.register_blueprint(pharmacist.bp, url_prefix='/pharmacist')
+    app.register_blueprint(cashier.bp, url_prefix='/cashier')
     app.register_blueprint(nurse.bp, url_prefix='/nurse')
     app.register_blueprint(doctor.bp, url_prefix='/doctor')
     app.register_blueprint(patient.bp, url_prefix='/patient')

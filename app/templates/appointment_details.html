@@ -1,0 +1,20 @@
+<!-- appointment_details.html -->
+{% extends "layout.html" %}
+{% block content %}
+<h1>Appointment Details</h1>
+<p>Patient Name: {{ appointment.patient_name }}</p>
+<p>Patient ID: {{ appointment.patient_id }}</p>
+<p>Weight: {{ appointment.patient_weight }}</p>
+<p>Blood Group: {{ appointment.patient_blood_group }}</p>
+<p>Height: {{ appointment.patient_height }}</p>
+<p>Date: {{ appointment.date }}</p>
+<p>Time: {{ appointment.time }}</p>
+<p>Doctor Name: {{ appointment.doctor_name }}</p>
+<p>Reason: {{ appointment.reason }}</p>
+
+<form method="POST">
+    <label for="prescription">Prescription:</label>
+    <textarea name="prescription" required>{{ appointment.prescription }}</textarea>
+    <button type="submit">Submit Prescription</button>
+</form>
+{% endblock %}

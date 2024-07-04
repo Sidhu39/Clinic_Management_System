@@ -1,14 +1,41 @@
-<!-- app/templates/view_queue.html -->
-
+<!-- view_queue.html -->
 {% extends "layout.html" %}
 {% block content %}
-  <h2>Queue</h2>
-  <ul>
-    {% for q in queue %}
-      <li>
-        Appointment for {{ q.appointment.patient_name }} at {{ q.appointment.time }}<br>
-        <a href="{{ url_for('routes.prescribe_medications', appointment_id=q.appointment.id) }}">Prescribe Medications</a>
-      </li>
+<h1>Queue</h1>
+
+<h2>Waiting Queue</h2>
+<table>
+    <tr>
+        <th>Queue Number</th>
+        <th>Action</th>
+    </tr>
+    {% for item in waiting_queue %}
+    <tr {% if loop.first %}style="font-weight: bold; font-size: larger;"{% endif %}>
+        <td>{{ item.appointment.appointment_id }}</td>
+        <td>
+            {% if current_user.role == 'doctor' %}
+            <a href="{{ url_for('routes.appointment_details', appointment_id=item.appointment_id) }}">View Details</a>
+            {% endif %}
+        </td>
+    </tr>
     {% endfor %}
-  </ul>
+</table>
+
+<h2>Billing Queue</h2>
+<table>
+  <tr>
+        <th>Queue Number</th>
+        <th>Action</th>
+    </tr>
+    {% for item in billing_queue %}
+    <tr {% if loop.first %}style="font-weight: bold; font-size: larger;"{% endif %}>
+        <td>{{ item.appointment.appointment_id }}</td>
+        <td>
+            {% if current_user.role == 'cashier' %}
+            <a href="{{ url_for('routes.billing', queue_id=item.id) }}">Process Billing</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

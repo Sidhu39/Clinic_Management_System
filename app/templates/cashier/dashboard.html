@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Cashier Dashboard</h1>
+  <a href="{{ url_for('routes.logout') }}"
+     class="pure-button pure-button-primary" ><br/><br/><p align="right">Logout<img src="{{ url_for('static', filename='images/logout.jpg') }}" alt="Logout" style="width:25pt" align="right"></p></a>
+{% endblock %}

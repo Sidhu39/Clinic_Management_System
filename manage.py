@@ -1,6 +1,13 @@
 from app import create_app
+from app.models import Appointment, Queue
+
 app = create_app()
 with app.app_context():
+    appointments = Appointment.query.all()
+    queues = Queue.query.all()
+    print(appointments)
+    print(queues)
+
     print(app.url_map)
 
 from flask_script import Manager

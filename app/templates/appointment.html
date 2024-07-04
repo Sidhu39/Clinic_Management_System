@@ -1,7 +1,9 @@
+<!-- app/templates/book_appointment.html -->
+
 {% extends "layout.html" %}
 {% block content %}
   <h2>Book Appointment</h2>
-  <form method="POST" action="{{ url_for('routes.book_appointment') }}">
+  <form method="post" action="">
     {{ form.hidden_tag() }}
     <div class="form-group">
       {{ form.patient_name.label }}<br>

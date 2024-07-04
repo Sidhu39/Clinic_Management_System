@@ -1,5 +1,75 @@
-{% extends "layout.html" %}
-{% block content %}
-  <h1>Doctor Dashboard</h1>
-  <!-- Doctor-specific content -->
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background: #1f8dd6;
+            color: white;
+            padding: 2em;
+            text-align: center;
+        }
+        .content {
+            margin: 2em;
+        }
+        .appointment-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 1em;
+            margin-bottom: 1em;
+            background: #f9f9f9;
+        }
+        .appointment-card h3 {
+            margin-top: 0;
+        }
+        .appointment-card p {
+            margin: 0.5em 0;
+        }
+        .pure-button-primary {
+            background: #1f8dd6;
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .footer {
+            background: #f8f8f8;
+            padding: 2em;
+            text-align: center;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Doctor Dashboard</h1>
+        <p>Welcome, Dr. {{ doctor_name }}</p>
+    </div>
+
+    <div class="content">
+        <h2>Today's Appointments</h2>
+        {% for q in appointments %}
+        <div class="appointment-card">
+            <h3>Patient ID: {{ q.appointment.patient_id }}</h3>
+            <p><strong>Patient Name:</strong> {{ q.appointment.patient_name }}</p>
+            <p><strong>Appointment Time:</strong> {{ q.appointment.time }}</p>
+            <p><strong>Reason for Visit:</strong> {{ q.appointment.reason }}</p>
+            <a href="{{ url_for('routes.prescribe_medications', appointment_id=q.appointment.id) }}" class="pure-button pure-button-primary">View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="{{ url_for('routes.index') }}">Back to Home Page</a>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 ABC Clinic. All rights reserved.</p>
+    </div>
+</body>
+</html>
